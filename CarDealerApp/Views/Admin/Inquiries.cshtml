@@ -1,0 +1,45 @@
+﻿@model List<CarDealerApp.Data.Models.Inquiry>
+
+@{
+    ViewData["Title"] = "Inquiries";
+}
+
+<h2>Customer Inquiries</h2>
+
+<!-- Admin Action Buttons -->
+<div class="mb-4">
+    <a class="btn btn-primary me-2" asp-controller="Admin" asp-action="Dashboard">Upload Car</a>
+    <a class="btn btn-secondary me-2" asp-controller="Admin" asp-action="Inquiries">View Inquiries</a>
+    <form asp-controller="Admin" asp-action="Logout" method="post" style="display:inline;">
+        <button type="submit" class="btn btn-danger">Logout</button>
+    </form>
+</div>
+
+@if (!Model.Any())
+{
+    <p>No inquiries yet.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Message</th>
+                <th>Car ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var inquiry in Model)
+            {
+                <tr>
+                    <td>@inquiry.Name</td>
+                    <td>@inquiry.Email</td>
+                    <td>@inquiry.Message</td>
+                    <td>@inquiry.CarId</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

@@ -1,0 +1,53 @@
+﻿@model CarDealerApp.Data.Models.Car
+
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<h2>Admin Dashboard</h2>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+<!-- Admin Action Buttons -->
+<div class="mb-4">
+    <a class="btn btn-primary me-2" asp-controller="Admin" asp-action="Dashboard">Upload Car</a>
+    <a class="btn btn-secondary me-2" asp-controller="Admin" asp-action="Inquiries">View Inquiries</a>
+    <form asp-controller="Admin" asp-action="Logout" method="post" style="display:inline;">
+        <button type="submit" class="btn btn-danger">Logout</button>
+    </form>
+</div>
+
+<!-- Car Upload Form -->
+<h4>Upload a New Car</h4>
+
+<form asp-controller="Admin" asp-action="Dashboard" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label>Make</label>
+        <input asp-for="Make" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label>Model</label>
+        <input asp-for="Model" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label>Year</label>
+        <input asp-for="Year" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label>Price (₦)</label>
+        <input asp-for="Price" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label>Upload Image</label>
+        <input type="file" name="carImage" class="form-control" required />
+    </div>
+
+    <button type="submit" class="btn btn-success mt-2">Upload Car</button>
+</form>

@@ -1,0 +1,33 @@
+﻿@model IEnumerable<CarDealerApp.Data.Models.Car>
+
+@{
+    ViewData["Title"] = "Car Listings";
+}
+
+<h2>Available Cars</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<div class="row">
+    @foreach (var car in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="@car.ImageUrl" class="card-img-top" alt="Car Image" style="height: 200px; object-fit: cover;" />
+                <div class="card-body">
+                    <h5 class="card-title">@car.Make @car.Model</h5>
+                    <p class="card-text">
+                        Year: @car.Year <br />
+                        Price: ₦@car.Price
+                    </p>
+                    <a href="@Url.Action("Details", "Home", new { id = car.Id })" class="btn btn-primary mt-2">View Details</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

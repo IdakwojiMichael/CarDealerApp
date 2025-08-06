@@ -1,0 +1,33 @@
+﻿@model CarDealerApp.Data.Models.Car
+
+@{
+    ViewData["Title"] = "Car Details";
+}
+
+<h2>@Model.Make @Model.Model (@Model.Year)</h2>
+<img src="@Model.ImageUrl" alt="Car image" style="max-width: 300px;" />
+<p><strong>Price:</strong> ₦@Model.Price</p>
+
+<hr />
+
+<h3>Send Inquiry</h3>
+<form asp-controller="Home" asp-action="SubmitInquiry" method="post">
+    <input type="hidden" name="CarId" value="@Model.Id" />
+
+    <div class="form-group">
+        <label>Name</label>
+        <input name="Name" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label>Email</label>
+        <input name="Email" type="email" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label>Message</label>
+        <textarea name="Message" class="form-control" required></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Submit Inquiry</button>
+</form>
